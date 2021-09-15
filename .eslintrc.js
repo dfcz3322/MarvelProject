@@ -4,7 +4,7 @@ module.exports = {
         "es2021": true
     },
     "extends": [
-        "prettier",
+        'prettier/@typescript-eslint',
         "eslint:recommended",
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended"
@@ -20,7 +20,5 @@ module.exports = {
     "plugins": [
         "react",
         "@typescript-eslint"
-    ],
-    "rules": {
-    }
+    ]
 };
