@@ -1,0 +1,12 @@
+.search-input {
+    background-color: white;
+    color: black;
+    width: 60%;
+    height: 50px;
+    padding-right: 55px;
+    
+}
+.search-sortBy {
+    color:black;
+    font-weight: bold !important; 
+}

@@ -1,10 +1,13 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import { History as RouterHistory } from "history";
+import { Link } from "react-router-dom";
+
+import "./hero.css";
+import { ICharacter } from '../../intarface/interface';
+import { MarvelButton } from '../marvelButton/marvelButton';
 
 interface IHeroProps {
-    history: RouterHistory;
+  character: ICharacter;
 }
 
 export class Hero extends React.Component<IHeroProps> {
@@ -16,9 +19,12 @@ export class Hero extends React.Component<IHeroProps> {
         justifyContent="space-around"
         alignItems="center"
       >
-              <img></img>
+              <img src={`${this.props.character.thumbnail.path}/standard_medium.${this.props.character.thumbnail.extension}`}></img>
+              <p>{this.props.character.name}</p>
               <p>Any useful information hero</p>
-              <Button onClick={() => this.props.history.push("/test")} variant="contained">Default</Button>
+              <Link to="/comics/:id">
+                <MarvelButton>Read more</MarvelButton>
+              </Link>
           </Grid>
       )
     }

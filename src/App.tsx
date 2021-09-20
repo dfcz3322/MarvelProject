@@ -15,14 +15,14 @@ function App() {
 
   return (
     <Router>
-      <Link to="/comics">Comics</Link>
+      <Link to="/comics"></Link>
       <Switch>
-        <Route path="/comics" component={Comics}></Route>
+        <Route path="/comics/:id" component={Comics}></Route>
         <Route exact path="/" component={Search}></Route>
         <Route component={NotFound} />
       </Switch>
     </Router>
-  );
+  )
 }
 
 
