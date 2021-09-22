@@ -8,6 +8,7 @@ import { MarvelButton } from '../marvelButton/marvelButton';
 interface ISearchBarProps {
   onSearch: (event: React.MouseEvent<HTMLElement>) => void;
   onQueryChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  currentQuery: string;
 }
 
 export class SearchBar extends React.Component<ISearchBarProps> {
@@ -18,17 +19,21 @@ export class SearchBar extends React.Component<ISearchBarProps> {
         direction="row"
         justifyContent="flex-start"
         alignItems="center"
+        className="searchBar--body"
       >
             <TextField onChange={this.props.onQueryChange} className="search-input"
             id="filled-textarea"
-            label="Multiline Placeholder"
+            label="FIND YOUR SUPERHERO"
             placeholder="Placeholder"
-            multiline
             variant="filled"
+            value={this.props.currentQuery}
             />
              <Button className="search-sortBy" variant="contained">Sort by</Button>
+             <div className="searchBar-marvelButton">
              <MarvelButton onClick={this.props.onSearch}>Search</MarvelButton>
+             </div>
         </Grid>
+
       )
     }
  }

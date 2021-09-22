@@ -60,3 +60,17 @@ export interface IUrls {
     type: string;
     url: string;
 }
+
+export interface IComics {
+    comics: IComics;
+    description: string;
+    events: IEvents;
+    id: number;
+    modified: string;
+    name: string;
+    resourceURI: string;
+    series: ISeries;
+    stories: IStories;
+    thumbnail: IThumbnail;
+    urls: IUrls;
+}

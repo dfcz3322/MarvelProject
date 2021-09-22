@@ -13,19 +13,22 @@ interface IHeroProps {
 export class Hero extends React.Component<IHeroProps> {
     render() {
       return (
+        <div className="hero--body">
         <Grid
         container
         direction="row"
         justifyContent="space-around"
         alignItems="center"
+        flex-wrap = "nowrap"
+        wrap="nowrap"
       >
-              <img src={`${this.props.character.thumbnail.path}/standard_medium.${this.props.character.thumbnail.extension}`}></img>
-              <p>{this.props.character.name}</p>
-              <p>Any useful information hero</p>
-              <Link to="/comics/:id">
+              <img src={`${this.props.character.thumbnail.path}/standard_xlarge.${this.props.character.thumbnail.extension}`} className="hero--img"></img>
+              <p className="hero--text">{this.props.character.name} - {this.props.character.description}</p>
+              <Link to={`/comics/${this.props.character.id}`}>
                 <MarvelButton>Read more</MarvelButton>
               </Link>
           </Grid>
+          </div>
       )
     }
 }    

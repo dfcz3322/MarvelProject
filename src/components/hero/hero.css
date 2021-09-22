@@ -1,3 +1,9 @@
-.hero__button {
-    background-color: red;
+.hero--img {
+    border-radius: 50%;
+}
+.hero--text {
+    width: 50%;
+}
+.hero--body {
+    margin-bottom: 30px;
 }
