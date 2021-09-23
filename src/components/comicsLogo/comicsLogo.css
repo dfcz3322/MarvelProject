@@ -1,7 +1,6 @@
 .comicsLogo--img {
-     width: 60%; 
-     flex-direction: column;
-
+    width: 60%;
+    flex-direction: column;
 }
 .comicsLogo--text {
     font-size: 20px;

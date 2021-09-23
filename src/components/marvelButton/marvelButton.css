@@ -18,7 +18,8 @@
     left: 0;
 }
 
-.cta-btn.cta-btn--outline.cta-btn--light:after, .cta-btn.cta-btn--outline.cta-btn--light:before {
+.cta-btn.cta-btn--outline.cta-btn--light:after,
+.cta-btn.cta-btn--outline.cta-btn--light:before {
     border-color: #fff;
     transition: none;
     max-width: calc(100% - 15px);
@@ -30,7 +31,8 @@
     margin-right: 16px;
 }
 
-.cta-btn:after, .cta-btn:before {
+.cta-btn:after,
+.cta-btn:before {
     border-style: solid;
     content: "";
     display: block;
@@ -42,7 +44,8 @@
     right: 0;
 }
 
-.cta-btn.cta-btn--outline.cta-btn--light:after, .cta-btn.cta-btn--outline.cta-btn--light:before {
+.cta-btn.cta-btn--outline.cta-btn--light:after,
+.cta-btn.cta-btn--outline.cta-btn--light:before {
     border-color: #fff;
     transition: none;
     max-width: calc(100% - 15px);
@@ -54,7 +57,8 @@
     top: 0;
 }
 
-.cta-btn:after, .cta-btn:before {
+.cta-btn:after,
+.cta-btn:before {
     border-style: solid;
     content: "";
     display: block;
@@ -78,7 +82,8 @@
     color: white;
 }
 
-.cta-btn .innerfill:after, .cta-btn .innerfill:before {
+.cta-btn .innerfill:after,
+.cta-btn .innerfill:before {
     border-color: transparent;
     border-style: solid;
     border-width: 0 0 16px 16px;
@@ -87,39 +92,28 @@
     position: absolute;
 }
 
-.cta-btn.cta-btn--outline.cta-btn--light .innerfill:after, .cta-btn.cta-btn--outline.cta-btn--light .innerfill:before {
+.cta-btn.cta-btn--outline.cta-btn--light .innerfill:after,
+.cta-btn.cta-btn--outline.cta-btn--light .innerfill:before {
     background-size: 16px 24px;
-    background-image: repeating-linear-gradient(
--45deg,#fff,#fff 1px,transparent 0,transparent 16px);
+    background-image: repeating-linear-gradient(-45deg, #fff, #fff 1px, transparent 0, transparent 16px);
     transition: none;
 }
 
-.cta-btn .innerfill:after, .cta-btn .innerfill:before {
-    border-color: transparent;
-    border-style: solid;
-    border-width: 0 0 16px 16px;
-    content: "";
-    display: block;
-    position: absolute;
-}
-
-.cta-btn.cta-btn--outline.cta-btn--light .innerfill:after, .cta-btn.cta-btn--outline.cta-btn--light .innerfill:before {
+.cta-btn.cta-btn--outline.cta-btn--light .innerfill:after,
+.cta-btn.cta-btn--outline.cta-btn--light .innerfill:before {
     background-size: 16px 24px;
-    background-image: repeating-linear-gradient(
--45deg,#fff,#fff 1px,transparent 0,transparent 16px);
+    background-image: repeating-linear-gradient(-45deg, #fff, #fff 1px, transparent 0, transparent 16px);
     transition: none;
 }
 
 .cta-btn .innerfill:after {
     bottom: 0;
     right: 0;
-    transform: rotate(
-180deg);
+    transform: rotate(180deg);
 }
 
 .cta-btn .innerfill:before {
     left: 0;
     top: 0;
-    transform: rotate(
-180deg);
+    transform: rotate(180deg);
 }
