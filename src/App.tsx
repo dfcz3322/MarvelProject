@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Search } from "./pages/search";
-import { Comics } from "./pages/comics";
+import  Search from "./pages/search";
+import  Comics  from "./pages/comics";
 import { NotFound } from "./pages/notFound/notFound";
 
 function App(): JSX.Element {
