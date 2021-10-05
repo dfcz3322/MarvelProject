@@ -1,5 +1,5 @@
 import React from "react";
-import { RouteChildrenProps } from "react-router-dom";
+import { RouteComponentProps } from "react-router-dom";
 import { IMarvelEntityResponse } from "../interface/interface";
 import { ComicsItem } from "../components/comicsComics/comicsItem";
 import { ComicsLogo } from "../components/comicsLogo/comicsLogo";
@@ -12,18 +12,21 @@ interface IComicsState {
     isLoading: boolean;
 }
 
-export class Comics extends React.Component<RouteChildrenProps, IComicsState> {
-    constructor(props: RouteChildrenProps) {
+interface MatchParams {
+    id: string;
+}
+export class Comics extends React.Component<RouteComponentProps<MatchParams>, IComicsState> {
+    constructor(props: RouteComponentProps<MatchParams>) {
         super(props);
         this.state = { comics: [], isLoading: false };
     }
 
     getComics(): void {
         this.setState({ isLoading: true });
-        handleRequest(`characters/${(this.props.match?.params as any).id}/comics`)
+        handleRequest(`characters/${this.props.match?.params.id}/comics`)
             .then((response) => {
                 console.log(response);
-                this.setState({ comics: response.data.data.results });
+                this.setState({ comics: response});
             })
             .finally(() => {
                 this.setState({ isLoading: false });

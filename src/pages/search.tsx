@@ -25,7 +25,7 @@ export class Search extends React.Component<RouteChildrenProps, ISearchState> {
         handleRequest(`characters`, this.state.searchQuery)
             .then((response) => {
                 console.log(response);
-                this.setState({ characters: response.data.data.results });
+                this.setState({ characters: response });
             })
             .finally(() => {
                 this.setState({ isLoading: false });
@@ -50,7 +50,7 @@ export class Search extends React.Component<RouteChildrenProps, ISearchState> {
     render(): JSX.Element {
         return (
             <>
-                {this.state.isLoading ? <LoadingOverlay></LoadingOverlay> : null}
+                {this.state.isLoading ? <LoadingOverlay/> : null}
 
                 <SearchLogo></SearchLogo>
                 <SearchBar
