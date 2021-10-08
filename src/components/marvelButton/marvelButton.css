@@ -1,0 +1,119 @@
+.cta-btn {
+    background-color: transparent;
+    border-radius: 0;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 700;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    letter-spacing: 0;
+    width: auto;
+    z-index: 10;
+}
+
+.cta-btn.cta-btn--outline.cta-btn--light:after {
+    border-width: 0 0 1px 1px;
+    left: 0;
+}
+
+.cta-btn.cta-btn--outline.cta-btn--light:after,
+.cta-btn.cta-btn--outline.cta-btn--light:before {
+    border-color: #fff;
+    transition: none;
+    max-width: calc(100% - 15px);
+}
+
+.cta-btn:after {
+    border-width: 16px 16px 0 0;
+    bottom: 0;
+    margin-right: 16px;
+}
+
+.cta-btn:after,
+.cta-btn:before {
+    border-style: solid;
+    content: "";
+    display: block;
+    height: 16px;
+}
+
+.cta-btn.cta-btn--outline.cta-btn--light:before {
+    border-width: 1px 1px 0 0;
+    right: 0;
+}
+
+.cta-btn.cta-btn--outline.cta-btn--light:after,
+.cta-btn.cta-btn--outline.cta-btn--light:before {
+    border-color: #fff;
+    transition: none;
+    max-width: calc(100% - 15px);
+}
+
+.cta-btn:before {
+    border-width: 0 0 16px 16px;
+    margin-left: 16px;
+    top: 0;
+}
+
+.cta-btn:after,
+.cta-btn:before {
+    border-style: solid;
+    content: "";
+    display: block;
+    height: 16px;
+}
+
+.innerfill {
+    background-color: transparent;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+    color: #fff;
+    opacity: 1;
+    transition: none;
+    text-align: center;
+    line-height: 16px;
+    display: block;
+    padding: 0 35px;
+}
+
+.innerfill > span {
+    color: white;
+}
+
+.cta-btn .innerfill:after,
+.cta-btn .innerfill:before {
+    border-color: transparent;
+    border-style: solid;
+    border-width: 0 0 16px 16px;
+    content: "";
+    display: block;
+    position: absolute;
+}
+
+.cta-btn.cta-btn--outline.cta-btn--light .innerfill:after,
+.cta-btn.cta-btn--outline.cta-btn--light .innerfill:before {
+    background-size: 16px 24px;
+    background-image: repeating-linear-gradient(-45deg, #fff, #fff 1px, transparent 0, transparent 16px);
+    transition: none;
+}
+
+.cta-btn.cta-btn--outline.cta-btn--light .innerfill:after,
+.cta-btn.cta-btn--outline.cta-btn--light .innerfill:before {
+    background-size: 16px 24px;
+    background-image: repeating-linear-gradient(-45deg, #fff, #fff 1px, transparent 0, transparent 16px);
+    transition: none;
+}
+
+.cta-btn .innerfill:after {
+    bottom: 0;
+    right: 0;
+    transform: rotate(180deg);
+}
+
+.cta-btn .innerfill:before {
+    left: 0;
+    top: 0;
+    transform: rotate(180deg);
+}

@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Search } from "./pages/search";
+import { Comics } from "./pages/comics";
+import { NotFound } from "./pages/notFound/notFound";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App(): JSX.Element {
+    return (
+        <Router>
+            <Link to="/comics"></Link>
+            <Switch>
+                <Route path="/comics/:id" component={Comics}></Route>
+                <Route exact path="/" component={Search}></Route>
+                <Route component={NotFound} />
+            </Switch>
+        </Router>
+    );
 }
 
 export default App;
