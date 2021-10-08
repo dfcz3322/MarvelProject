@@ -6,27 +6,36 @@ import { ComicsLogo } from "../components/comicsLogo/comicsLogo";
 import "./comics.css";
 import { LoadingOverlay } from "../components/loadingOverlay/loadingOverlay";
 import { handleRequest } from "../api/requestHandler";
+import { IRootStore } from "../reducer";
+import { Dispatch } from "redux";
+import { setComics } from "../actions/comics";
+import { connect } from "react-redux";
 
 interface IComicsState {
+    isLoading: boolean;
+}
+
+interface IComicsProps extends RouteComponentProps<MatchParams> {
     comics: IMarvelEntityResponse[];
     isLoading: boolean;
+    setComics: (comics: IMarvelEntityResponse[]) => void;
 }
 
 interface MatchParams {
     id: string;
 }
-export class Comics extends React.Component<RouteComponentProps<MatchParams>, IComicsState> {
-    constructor(props: RouteComponentProps<MatchParams>) {
+
+class Comics extends React.Component<IComicsProps, IComicsState> {
+    constructor(props: IComicsProps) {
         super(props);
-        this.state = { comics: [], isLoading: false };
+        this.state = { isLoading: false };
     }
 
     getComics(): void {
         this.setState({ isLoading: true });
         handleRequest(`characters/${this.props.match?.params.id}/comics`)
             .then((response) => {
-                console.log(response);
-                this.setState({ comics: response});
+                this.props.setComics(response);
             })
             .finally(() => {
                 this.setState({ isLoading: false });
@@ -44,10 +53,24 @@ export class Comics extends React.Component<RouteComponentProps<MatchParams>, IC
                     <ComicsLogo></ComicsLogo>
                 </div>
 
-                {this.state.comics.map((comics: IMarvelEntityResponse) => {
+                {this.props.comics.map((comics: IMarvelEntityResponse) => {
                     return <ComicsItem key={comics.id} comics={comics}></ComicsItem>;
                 })}
             </div>
         );
     }
 }
+
+const mapStateToProps = (store: IRootStore) => {
+    return {
+        comics: store.comics.comics,
+    }
+}
+
+const mapDispatchToProps = (dispatch: Dispatch) => {
+    return {
+      setComics: (comics: IMarvelEntityResponse[]) => dispatch(setComics(comics)),
+    }
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Comics); 

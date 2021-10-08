@@ -18,7 +18,7 @@ interface ISearchState {
 interface ISearchProps extends RouteChildrenProps {
     characters: IMarvelEntityResponse[];
     searchQuery: string;
-    setCharacters: (characters: IMarvelEntityResponse) => void;
+    setCharacters: (characters: IMarvelEntityResponse[]) => void;
     setSearchQuery: (searchQuery: string) => void;
 }
 
@@ -32,8 +32,7 @@ class Search extends React.Component<ISearchProps, ISearchState> {
         this.setState({ isLoading: true });
         handleRequest(`characters`, searchParam)
             .then((response) => {
-                console.log(response);
-                this.setState({ characters: response });
+                this.props.setCharacters(response);
             })
             .finally(() => {
                 this.setState({ isLoading: false });
@@ -87,7 +86,7 @@ const mapStateToProps = (store: IRootStore) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-      setCharacters: (characters: IMarvelEntityResponse) => dispatch(setCharacters(characters)),
+      setCharacters: (characters: IMarvelEntityResponse[]) => dispatch(setCharacters(characters)),
       setSearchQuery: (searchQuery: string) => dispatch(setSearchQuery(searchQuery)),
     }
   }
