@@ -30,7 +30,7 @@ class Search extends React.Component<ISearchProps, ISearchState> {
 
     getHero(searchParam = ""): void {
         this.setState({ isLoading: true });
-        handleRequest(`characters`, searchParam)
+        handleRequest("characters", searchParam)
             .then((response) => {
                 this.props.setCharacters(response);
             })

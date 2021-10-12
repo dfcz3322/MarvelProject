@@ -1,3 +1,4 @@
+import { SET_COMICS } from "../actions/comics";
 import { IMarvelEntityResponse } from "../interface/interface";
 
 export interface IComicsReduxState {
@@ -8,10 +9,10 @@ const initialComics: IComicsReduxState = {
     comics: []
 };
 
-export const comics = (state: IComicsReduxState = initialComics, action: { type: string, payload: unknown }): IComicsReduxState => {
+export const comics = (state: IComicsReduxState = initialComics, action: { type: string, payload: IMarvelEntityResponse[] }): IComicsReduxState => {
     switch(action.type) {
-        case 'comics/setComics':
-            return {...state, comics: action.payload as IMarvelEntityResponse[] }
+        case SET_COMICS:
+            return {...state, comics: action.payload }
         default: 
             return state;
     }
