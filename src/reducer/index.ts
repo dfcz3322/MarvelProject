@@ -1,15 +1,15 @@
-import { combineReducers } from "redux";
-import { comics, IComicsReduxState } from "./comicsReducer";
-import { ISearchReduxState, search } from "./searchReducer";
+import { combineReducers } from 'redux';
+import { comics, IComicsReduxState } from './comicsReducer';
+import { ISearchReduxState, search } from './searchReducer';
 
 export interface IRootStore {
-    comics: IComicsReduxState;
-    search: ISearchReduxState;
+  comics: IComicsReduxState;
+  search: ISearchReduxState;
 }
 
 const marvelAppState = combineReducers({
-    search,
-    comics
+  search,
+  comics,
 });
 
 export default marvelAppState;
