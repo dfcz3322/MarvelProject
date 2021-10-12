@@ -5,10 +5,9 @@ import { ComicsItem } from "../components/comicsComics/comicsItem";
 import { ComicsLogo } from "../components/comicsLogo/comicsLogo";
 import "./comics.css";
 import { LoadingOverlay } from "../components/loadingOverlay/loadingOverlay";
-import { handleRequest } from "../api/requestHandler";
 import { IRootStore } from "../reducer";
 import { Dispatch } from "redux";
-import { setComics } from "../actions/comics";
+import { getComics, setComics } from "../actions/comics";
 import { connect } from "react-redux";
 
 interface IComicsState {
@@ -19,6 +18,8 @@ interface IComicsProps extends RouteComponentProps<MatchParams> {
     comics: IMarvelEntityResponse[];
     isLoading: boolean;
     setComics: (comics: IMarvelEntityResponse[]) => void;
+    getComics: (id: string) => void;
+    hasError: boolean;
 }
 
 interface MatchParams {
@@ -31,7 +32,7 @@ class Comics extends React.Component<IComicsProps, IComicsState> {
         this.state = { isLoading: false };
     }
 
-    getComics(): void {
+    /* getComics(): void {
         this.setState({ isLoading: true });
         handleRequest(`characters/${this.props.match?.params.id}/comics`)
             .then((response) => {
@@ -40,10 +41,10 @@ class Comics extends React.Component<IComicsProps, IComicsState> {
             .finally(() => {
                 this.setState({ isLoading: false });
             });
-    }
+    } */
 
     componentDidMount(): void {
-        this.getComics();
+        this.props.getComics(this.props.match?.params.id);
     }
     render(): JSX.Element {
         return (
@@ -52,7 +53,7 @@ class Comics extends React.Component<IComicsProps, IComicsState> {
                 <div className="comics-container">
                     <ComicsLogo></ComicsLogo>
                 </div>
-
+                {this.props.hasError ? <p className="error-message">AN ERROR HAS OCCURRED, PLEASE TRY AGAIN LATER</p> : null}
                 {this.props.comics.map((comics: IMarvelEntityResponse) => {
                     return <ComicsItem key={comics.id} comics={comics}></ComicsItem>;
                 })}
@@ -64,11 +65,13 @@ class Comics extends React.Component<IComicsProps, IComicsState> {
 const mapStateToProps = (store: IRootStore) => {
     return {
         comics: store.comics.comics,
+        hasError: store.search.hasError,
     }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
+      getComics: (id: string) => dispatch(getComics(id)),
       setComics: (comics: IMarvelEntityResponse[]) => dispatch(setComics(comics)),
     }
   }

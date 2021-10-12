@@ -7,6 +7,10 @@ interface ISetSearchQuery {
     type: string,
     payload: string
 }
+interface IGetHeroes {
+    type: string,
+    payload: string
+}
 export const setCharacters = (characters: IMarvelEntityResponse[]): ISetCharacters => {
     return {
         type: 'search/setCharacters',
@@ -14,9 +18,23 @@ export const setCharacters = (characters: IMarvelEntityResponse[]): ISetCharacte
     }
 };
 
+export const getHeroes = (searchQuery: string): IGetHeroes => {
+    return {
+        type: 'search/getHeroes',
+        payload: searchQuery
+    }
+};
+
+export const setHeroesError = (): { type: string } => {
+    return {
+        type: 'search/setHeroesError'
+    }
+};
+
+
 export const setSearchQuery = (searchQuery: string): ISetSearchQuery => {
     return {
-        type: 'search/setCharacters',
+        type: 'search/setSearchQuery',
         payload: searchQuery
     }
 };
