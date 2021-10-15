@@ -9,23 +9,22 @@ import { handleRequest } from '../api/requestHandler';
 import { connect } from 'react-redux';
 import { IRootStore } from '../reducer';
 import { Dispatch } from 'redux';
-import { setCharacters, setSearchQuery } from '../actions/search';
+import { setCharacters } from '../actions/search';
 
 interface ISearchState {
   isLoading: boolean;
+  searchQuery: string;
 }
 
 interface ISearchProps extends RouteChildrenProps {
   characters: IMarvelEntityResponse[];
-  searchQuery: string;
   setCharacters: (characters: IMarvelEntityResponse[]) => void;
-  setSearchQuery: (searchQuery: string) => void;
 }
 
 class Search extends React.Component<ISearchProps, ISearchState> {
   constructor(props: ISearchProps) {
     super(props);
-    this.state = { isLoading: false };
+    this.state = { isLoading: false, searchQuery: "" };
   }
 
   getHero(searchParam = ''): void {
@@ -42,20 +41,20 @@ class Search extends React.Component<ISearchProps, ISearchState> {
   componentDidMount(): void {
     const searchParam = new URLSearchParams(this.props.location.search).get('search');
     if (searchParam?.length) {
-      this.props.setSearchQuery(searchParam);
+      this.setState({searchQuery: searchParam});
     }
     this.getHero(searchParam as string);
   }
   onSearch = (query: string): void => {
     this.props.history.push({
       pathname: '/',
-      search: `?search=${query}`,
+      ...(query.length && {search: `?search=${query}`}),
     });
-    this.getHero();
+    this.getHero(query);
   };
 
   onQueryChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    this.props.setSearchQuery(event.target.value);
+    this.setState({searchQuery: event.target.value});
   };
 
   render(): JSX.Element {
@@ -65,13 +64,14 @@ class Search extends React.Component<ISearchProps, ISearchState> {
 
         <SearchLogo></SearchLogo>
         <SearchBar
-          onSearch={() => this.onSearch(this.props.searchQuery)}
+          onSearch={() => this.onSearch(this.state.searchQuery)}
           onQueryChange={this.onQueryChange}
-          currentQuery={this.props.searchQuery}
+          currentQuery={this.state.searchQuery}
         ></SearchBar>
-        {this.props.characters.map((character: any) => {
+        {this.props.characters.length ? this.props.characters.map((character) => {
           return <Hero key={character.id} character={character}></Hero>;
-        })}
+        }) : <p className="error-message">HERO COULD NOT BE FOUND</p>}
+        
       </>
     );
   }
@@ -80,14 +80,12 @@ class Search extends React.Component<ISearchProps, ISearchState> {
 const mapStateToProps = (store: IRootStore) => {
   return {
     characters: store.search.characters,
-    searchQuery: store.search.searchQuery,
   };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     setCharacters: (characters: IMarvelEntityResponse[]) => dispatch(setCharacters(characters)),
-    setSearchQuery: (searchQuery: string) => dispatch(setSearchQuery(searchQuery)),
   };
 };
 
