@@ -45,10 +45,13 @@ class Search extends React.Component<ISearchProps, ISearchState> {
     }
     this.getHero(searchParam as string);
   }
+  getOptionalSearchParam = (query: string): {search: string} => {
+    return {search: `?search=${query}`};
+  } 
   onSearch = (query: string): void => {
     this.props.history.push({
       pathname: '/',
-      ...(query.length && {search: `?search=${query}`}),
+      ...(query.length && this.getOptionalSearchParam(query)),
     });
     this.getHero(query);
   };

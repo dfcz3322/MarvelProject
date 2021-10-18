@@ -3,8 +3,7 @@ interface ISetCharacters {
   type: string;
   payload: IMarvelEntityResponse[];
 }
-export const SET_CHARACTERS = 'SEARCH/SET_CHARACTERS';
-export const SET_SEARCH_QUERY = 'SEARCH/SET_SEARCH-QUERY';
+export const SET_CHARACTERS = 'SET_CHARACTERS';
 
 export const setCharacters = (characters: IMarvelEntityResponse[]): ISetCharacters => {
   return {
