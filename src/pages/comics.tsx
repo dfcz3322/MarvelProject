@@ -26,11 +26,7 @@ interface MatchParams {
   id: string;
 }
 
-class Comics extends React.Component<IComicsProps, IComicsState> {
-  constructor(props: IComicsProps) {
-    super(props);
-    this.state = { isLoading: false };
-  }
+class Comics extends React.Component<IComicsProps> {
 
   componentDidMount(): void {
     this.props.getComics(this.props.match?.params.id);
@@ -38,7 +34,7 @@ class Comics extends React.Component<IComicsProps, IComicsState> {
   render(): JSX.Element {
     return (
       <div>
-        {this.state.isLoading ? <LoadingOverlay></LoadingOverlay> : null}
+        {this.props.isLoading ? <LoadingOverlay></LoadingOverlay> : null}
         <div className="comics-container">
           <ComicsLogo></ComicsLogo>
         </div>

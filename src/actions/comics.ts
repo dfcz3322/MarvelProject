@@ -1,5 +1,10 @@
 import { IMarvelEntityResponse } from '../interface/interface';
+
+
 export const SET_COMICS = 'COMICS/SET_COMICS';
+export const GET_COMICS = 'GET_COMICS';
+export const SET_COMICS_ERROR = 'SET_COMICS_ERROR';
+export const SET_IS_LOADING = 'SET_IS_LOADING';
 
 export const setComics = (comics: IMarvelEntityResponse[]): { type: string; payload: IMarvelEntityResponse[] } => {
   return {
@@ -10,20 +15,20 @@ export const setComics = (comics: IMarvelEntityResponse[]): { type: string; payl
 
 export const getComics = (id: string): { type: string; payload: string } => {
   return {
-    type: 'comics/getComics',
+    type: GET_COMICS,
     payload: id,
   };
 };
 
 export const setComicsError = (): { type: string } => {
   return {
-    type: 'comics/setComicsError',
+    type: SET_COMICS_ERROR,
   };
 };
 
 export const setIsLoading = (isLoading: boolean): { type: string; payload: boolean } => {
     return {
-        type: 'SET_IS_LOADING',
+        type: SET_IS_LOADING,
         payload: isLoading,
     }
 }

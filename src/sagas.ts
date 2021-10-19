@@ -1,8 +1,8 @@
-import { setHeroesError, setCharacters, setIsLoading as setIsHeroesLoading } from './actions/search';
+import { setHeroesError, setCharacters, setIsLoading as setIsHeroesLoading, GET_HEROES } from './actions/search';
 import { Action } from 'redux';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { handleRequest } from './api/requestHandler';
-import { setComics, setComicsError, setIsLoading as setIsComicsLoading  } from './actions/comics';
+import { GET_COMICS, setComics, setComicsError, setIsLoading as setIsComicsLoading  } from './actions/comics';
 
 interface ITask {
   payload: string;
@@ -37,8 +37,8 @@ function* fetchComics(action: { payload: string }): any {
 }
 
 function* marvelSaga(): any {
-  yield takeLatest<TaskAction>('search/getHeroes', fetchHeroes);
-  yield takeLatest<TaskAction>('comics/getComics', fetchComics);
+  yield takeLatest<TaskAction>(GET_HEROES, fetchHeroes);
+  yield takeLatest<TaskAction>(GET_COMICS, fetchComics);
 }
 
 export default marvelSaga;

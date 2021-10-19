@@ -10,9 +10,6 @@ import { IRootStore } from '../reducer';
 import { Dispatch } from 'redux';
 import { getHeroes, setCharacters, setSearchQuery } from '../actions/search';
 
-interface ISearchState {
-  isLoading: boolean;
-}
 
 interface ISearchProps extends RouteChildrenProps {
   characters: IMarvelEntityResponse[];
@@ -24,11 +21,7 @@ interface ISearchProps extends RouteChildrenProps {
   isLoading: boolean;
 }
 
-class Search extends React.Component<ISearchProps, ISearchState> {
-  constructor(props: ISearchProps) {
-    super(props);
-    this.state = { isLoading: false, searchQuery: "" };
-  }
+class Search extends React.Component<ISearchProps> {
 
   componentDidMount(): void {
     const searchParam = new URLSearchParams(this.props.location.search).get('search');
@@ -48,22 +41,17 @@ class Search extends React.Component<ISearchProps, ISearchState> {
   onQueryChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     this.props.setSearchQuery(event.target.value);
   };
-
+  
   render(): JSX.Element {
     return (
       <>
         {this.props.isLoading ? <LoadingOverlay /> : null}
 
-  render(): JSX.Element {
-    return (
-      <>
-        {this.state.isLoading ? <LoadingOverlay /> : null}
-
         <SearchLogo></SearchLogo>
         <SearchBar
-          onSearch={() => this.onSearch(this.state.searchQuery)}
+          onSearch={() => this.onSearch(this.props.searchQuery)}
           onQueryChange={this.onQueryChange}
-          currentQuery={this.state.searchQuery}
+          currentQuery={this.props.searchQuery}
         ></SearchBar>
         {this.props.characters.length ? this.props.characters.map((character) => {
           return <Hero key={character.id} character={character}></Hero>;
