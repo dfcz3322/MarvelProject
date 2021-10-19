@@ -27,7 +27,7 @@ interface ISearchProps extends RouteChildrenProps {
 class Search extends React.Component<ISearchProps, ISearchState> {
   constructor(props: ISearchProps) {
     super(props);
-    this.state = { isLoading: false };
+    this.state = { isLoading: false, searchQuery: "" };
   }
 
   componentDidMount(): void {
@@ -54,16 +54,21 @@ class Search extends React.Component<ISearchProps, ISearchState> {
       <>
         {this.props.isLoading ? <LoadingOverlay /> : null}
 
+  render(): JSX.Element {
+    return (
+      <>
+        {this.state.isLoading ? <LoadingOverlay /> : null}
+
         <SearchLogo></SearchLogo>
         <SearchBar
-          onSearch={() => this.onSearch(this.props.searchQuery)}
+          onSearch={() => this.onSearch(this.state.searchQuery)}
           onQueryChange={this.onQueryChange}
-          currentQuery={this.props.searchQuery}
+          currentQuery={this.state.searchQuery}
         ></SearchBar>
-        {this.props.hasError ? <p className="error-message">AN ERROR HAS OCCURRED, PLEASE TRY AGAIN LATER</p> : null}
-        {this.props.characters.map((character) => {
+        {this.props.characters.length ? this.props.characters.map((character) => {
           return <Hero key={character.id} character={character}></Hero>;
-        })}
+        }) : <p className="error-message">HERO COULD NOT BE FOUND</p>}
+        
       </>
     );
   }

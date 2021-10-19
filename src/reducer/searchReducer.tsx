@@ -1,3 +1,4 @@
+import { SET_CHARACTERS } from '../actions/search';
 import { IMarvelEntityResponse } from '../interface/interface';
 
 export interface ISearchReduxState {
@@ -6,6 +7,7 @@ export interface ISearchReduxState {
   hasError: boolean;
   isLoading: boolean;
 }
+type SearchActionPayload = IMarvelEntityResponse[] | string;
 
 const initialSearch: ISearchReduxState = {
   characters: [],

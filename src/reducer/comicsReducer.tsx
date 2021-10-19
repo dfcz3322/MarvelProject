@@ -1,3 +1,4 @@
+import { SET_COMICS } from '../actions/comics';
 import { IMarvelEntityResponse } from '../interface/interface';
 
 export interface IComicsReduxState {

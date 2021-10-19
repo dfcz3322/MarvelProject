@@ -7,13 +7,15 @@ interface ISetSearchQuery {
   type: string;
   payload: string;
 }
+export const SET_CHARACTERS = 'SET_CHARACTERS';
+
 interface IGetHeroes {
   type: string;
   payload: string;
 }
 export const setCharacters = (characters: IMarvelEntityResponse[]): ISetCharacters => {
   return {
-    type: 'search/setCharacters',
+    type: SET_CHARACTERS,
     payload: characters,
   };
 };
