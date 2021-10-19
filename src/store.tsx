@@ -5,9 +5,6 @@ import marvelSaga from './sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
-export default createStore(
-    marvelAppState,
-    applyMiddleware(sagaMiddleware)
-);
+export default createStore(marvelAppState, applyMiddleware(sagaMiddleware));
 
 sagaMiddleware.run(marvelSaga);
