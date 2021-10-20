@@ -1,34 +1,32 @@
-import { IMarvelEntityResponse } from '../interface/interface';
+import { Action, IMarvelEntityResponse } from '../interface/interface';
 
-
-export const SET_COMICS = 'COMICS/SET_COMICS';
+export const GET_COMICS_SUCCESS = 'GET_COMICS_SUCCESS';
 export const GET_COMICS = 'GET_COMICS';
-export const SET_COMICS_ERROR = 'SET_COMICS_ERROR';
+export const GET_COMICS_ERROR = 'GET_COMICS_ERROR';
 export const SET_IS_LOADING = 'SET_IS_LOADING';
 
-export const setComics = (comics: IMarvelEntityResponse[]): { type: string; payload: IMarvelEntityResponse[] } => {
+export const setComics = (comics: IMarvelEntityResponse[]): Action<string, IMarvelEntityResponse[]> => {
   return {
-    type: SET_COMICS,
+    type: GET_COMICS_SUCCESS,
     payload: comics,
   };
 };
 
-export const getComics = (id: string): { type: string; payload: string } => {
+export const getComics = (id: string): Action<string, string> => {
   return {
     type: GET_COMICS,
     payload: id,
   };
 };
 
-export const setComicsError = (): { type: string } => {
+export const setComicsError = (): Action<string> => {
   return {
-    type: SET_COMICS_ERROR,
+    type: GET_COMICS_ERROR,
   };
 };
 
-export const setIsLoading = (isLoading: boolean): { type: string; payload: boolean } => {
-    return {
-        type: SET_IS_LOADING,
-        payload: isLoading,
-    }
-}
+export const setIsLoading = (): Action<string> => {
+  return {
+    type: SET_IS_LOADING,
+  };
+};

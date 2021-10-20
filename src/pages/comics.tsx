@@ -10,9 +10,6 @@ import { Dispatch } from 'redux';
 import { getComics, setComics } from '../actions/comics';
 import { connect } from 'react-redux';
 
-interface IComicsState {
-  isLoading: boolean;
-}
 
 interface IComicsProps extends RouteComponentProps<MatchParams> {
   comics: IMarvelEntityResponse[];

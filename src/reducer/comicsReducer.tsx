@@ -1,4 +1,4 @@
-import { SET_COMICS, SET_COMICS_ERROR, SET_IS_LOADING } from '../actions/comics';
+import { GET_COMICS_SUCCESS, GET_COMICS_ERROR, SET_IS_LOADING } from '../actions/comics';
 import { IMarvelEntityResponse } from '../interface/interface';
 
 export interface IComicsReduxState {
@@ -18,12 +18,12 @@ export const comics = (
   action: { type: string; payload: unknown }
 ): IComicsReduxState => {
   switch (action.type) {
-    case SET_COMICS:
-      return { ...state, comics: action.payload as IMarvelEntityResponse[], hasError: false };
-    case SET_COMICS_ERROR:
-      return { ...state, comics: [], hasError: true };
+    case GET_COMICS_SUCCESS:
+      return { ...state, comics: action.payload as IMarvelEntityResponse[], hasError: false, isLoading: false };
+    case GET_COMICS_ERROR:
+      return { ...state, comics: [], hasError: true, isLoading: false };
       case SET_IS_LOADING:
-      return {...state, isLoading: action.payload as boolean };
+      return {...state, isLoading: true };
     default:
       return state;
   }

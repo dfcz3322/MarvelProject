@@ -1,53 +1,32 @@
-import { IMarvelEntityResponse } from '../interface/interface';
-interface ISetCharacters {
-  type: string;
-  payload: IMarvelEntityResponse[];
-}
-interface ISetSearchQuery {
-  type: string;
-  payload: string;
-}
+import { Action, IMarvelEntityResponse } from '../interface/interface';
 
-interface IGetHeroes {
-  type: string;
-  payload: string;
-}
-
-export const SET_CHARACTERS = 'SET_CHARACTERS';
-export const GET_HEROES = 'GET_HEROES';
-export const SET_HEROES_ERROR = 'SET_HEROES_ERROR';
-export const SET_SEARCH_QUERY = 'SET_SEARCH_QUERY';
+export const GET_CHARACTERS_SUCCESS = 'GET_CHARACTERS_SUCCESS';
+export const GET_CHARACTERS = 'GET_CHARACTERS';
+export const GET_CHARACTERS_ERROR = 'GET_CHARACTERS_ERROR';
 export const SET_IS_LOADING = 'SET_IS_LOADING'
 
 
-export const setCharacters = (characters: IMarvelEntityResponse[]): ISetCharacters => {
+export const getCharactersSuccess = (characters: IMarvelEntityResponse[]): Action<string, IMarvelEntityResponse[]> => {
   return {
-    type: SET_CHARACTERS,
+    type: GET_CHARACTERS_SUCCESS,
     payload: characters,
   };
 };
 
-export const getHeroes = (searchQuery: string): IGetHeroes => {
+export const getCharacters = (searchQuery: string): Action<string, string> => {
   return {
-    type: GET_HEROES,
+    type: GET_CHARACTERS,
     payload: searchQuery,
   };
 };
 
-export const setHeroesError = (): { type: string } => {
+export const getCharactersError = (): Action<string> => {
   return {
-    type: SET_HEROES_ERROR,
+    type: GET_CHARACTERS_ERROR,
   };
 };
 
-export const setSearchQuery = (searchQuery: string): ISetSearchQuery => {
-  return {
-    type: SET_SEARCH_QUERY,
-    payload: searchQuery,
-  };
-};
-
-export const setIsLoading = (isLoading: boolean): { type: string; payload: boolean } => {
+export const setIsLoading = (isLoading: boolean): Action<string, boolean> => {
   return {
       type: SET_IS_LOADING,
       payload: isLoading,

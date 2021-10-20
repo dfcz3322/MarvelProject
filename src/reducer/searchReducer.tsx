@@ -1,4 +1,4 @@
-import { SET_CHARACTERS, SET_HEROES_ERROR, SET_IS_LOADING, SET_SEARCH_QUERY } from '../actions/search';
+import { GET_CHARACTERS_SUCCESS, GET_CHARACTERS_ERROR, SET_IS_LOADING } from '../actions/search';
 import { IMarvelEntityResponse } from '../interface/interface';
 
 export interface ISearchReduxState {
@@ -21,11 +21,9 @@ export const search = (
   action: { type: string; payload: SearchActionPayload }
 ): ISearchReduxState => {
   switch (action.type) {
-    case SET_CHARACTERS:
+    case GET_CHARACTERS_SUCCESS:
       return { ...state, characters: action.payload as IMarvelEntityResponse[], hasError: false };
-    case SET_SEARCH_QUERY:
-      return { ...state, searchQuery: action.payload as string };
-    case SET_HEROES_ERROR:
+    case GET_CHARACTERS_ERROR:
       return { ...state, characters: [], hasError: true };
     case SET_IS_LOADING:
       return {...state, isLoading: action.payload as boolean };
