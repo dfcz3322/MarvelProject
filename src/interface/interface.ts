@@ -46,3 +46,5 @@ export interface IUrls {
   type: string;
   url: string;
 }
+
+export type Action<T, P = void> = { type: T, payload?: P };
