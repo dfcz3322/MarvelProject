@@ -1,7 +1,5 @@
 import React from 'react';
 
-export class NotFound extends React.Component {
-  render() {
+export function NotFound(): JSX.Element {
     return <div>404 Not Found</div>;
-  }
 }

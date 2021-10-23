@@ -7,8 +7,7 @@ interface IComicsProps {
   comics: IMarvelEntityResponse;
 }
 
-export class ComicsItem extends React.Component<IComicsProps> {
-  render(): JSX.Element {
+export function ComicsItem (props: IComicsProps): JSX.Element {
     return (
       <div className="comicsBody">
         <Grid
@@ -20,14 +19,13 @@ export class ComicsItem extends React.Component<IComicsProps> {
           wrap="nowrap"
         >
           <img
-            src={`${this.props.comics.thumbnail.path}/standard_xlarge.${this.props.comics.thumbnail.extension}`}
+            src={`${props.comics.thumbnail.path}/standard_xlarge.${props.comics.thumbnail.extension}`}
             className="hero--img"
           ></img>
           <p className="hero--text">
-            {this.props.comics.name} - {this.props.comics.description}
+            {props.comics.name} - {props.comics.description}
           </p>
         </Grid>
       </div>
     );
   }
-}

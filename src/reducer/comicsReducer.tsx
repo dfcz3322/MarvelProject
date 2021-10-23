@@ -22,8 +22,8 @@ export const comics = (
       return { ...state, comics: action.payload as IMarvelEntityResponse[], hasError: false, isLoading: false };
     case GET_COMICS_ERROR:
       return { ...state, comics: [], hasError: true, isLoading: false };
-      case SET_IS_LOADING:
-      return {...state, isLoading: true };
+    case SET_IS_LOADING:
+      return { ...state, isLoading: true };
     default:
       return state;
   }
