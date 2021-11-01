@@ -21,13 +21,14 @@ function Comics(props: RouteComponentProps<MatchParams>): JSX.Element {
   useEffect(() => {
     dispatch(getComics(props.match?.params.id));
   }, []);
+  const errorMessage = "AN ERROR HAS OCCURRED, PLEASE TRY AGAIN LATER";
   return (
     <div>
       {isLoading ? <LoadingOverlay></LoadingOverlay> : null}
       <div className="comics-container">
         <ComicsLogo></ComicsLogo>
       </div>
-      {hasError ? <p className="error-message">AN ERROR HAS OCCURRED, PLEASE TRY AGAIN LATER</p> : null}
+      {hasError ? <p className="error-message">{errorMessage}</p> : null}
       {comics.map((comics: IMarvelEntityResponse) => {
         return <ComicsItem key={comics.id} comics={comics}></ComicsItem>;
       })}

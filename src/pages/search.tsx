@@ -45,12 +45,13 @@ function Search(props: ISearchProps) {
   const onQueryChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setSearchQuery(event.target.value);
   };
+  const errorMessage = "HERO COULD NOT BE FOUND";
 
   return (
     <>
       {isLoading ? <LoadingOverlay /> : null}
 
-      <SearchLogo></SearchLogo>
+      <SearchLogo/>
       <SearchBar
         onSearch={() => onSearch(searchQuery)}
         onQueryChange={onQueryChange}
@@ -61,7 +62,7 @@ function Search(props: ISearchProps) {
           return <Hero key={character.id} character={character}></Hero>;
         })
       ) : hasError ? (
-        <p className="error-message">HERO COULD NOT BE FOUND</p>
+        <p className="error-message">{errorMessage}</p>
       ) : null}
     </>
   );

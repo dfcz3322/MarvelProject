@@ -8,6 +8,7 @@ interface IComicsProps {
 }
 
 export function ComicsItem (props: IComicsProps): JSX.Element {
+  const {comics} = props;
     return (
       <div className="comicsBody">
         <Grid
@@ -19,11 +20,11 @@ export function ComicsItem (props: IComicsProps): JSX.Element {
           wrap="nowrap"
         >
           <img
-            src={`${props.comics.thumbnail.path}/standard_xlarge.${props.comics.thumbnail.extension}`}
+            src={`${comics.thumbnail.path}/standard_xlarge.${comics.thumbnail.extension}`}
             className="hero--img"
           ></img>
           <p className="hero--text">
-            {props.comics.name} - {props.comics.description}
+            {comics.name} - {comics.description}
           </p>
         </Grid>
       </div>
