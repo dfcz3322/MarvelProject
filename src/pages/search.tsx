@@ -5,11 +5,10 @@ import { SearchBar } from '../components/searchBar/searchBar';
 import { SearchLogo } from '../components/searchLogo/searchLogo';
 import { IMarvelEntityResponse } from '../interface/interface';
 import { LoadingOverlay } from '../components/loadingOverlay/loadingOverlay';
-import { connect, useDispatch } from 'react-redux';
-import { IRootStore } from '../reducer';
-import { Dispatch } from 'redux';
-import { getCharacters, getCharactersSuccess, GET_CHARACTERS } from '../actions/search';
+import { useDispatch } from 'react-redux';
+import { getCharacters } from '../actions/search';
 import { useAppSelector } from '../hooks';
+import { searchErrorMessage } from '../constans';
 
 interface ISearchProps extends RouteChildrenProps {
   characters: IMarvelEntityResponse[];
@@ -45,13 +44,11 @@ function Search(props: ISearchProps) {
   const onQueryChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setSearchQuery(event.target.value);
   };
-  const errorMessage = "HERO COULD NOT BE FOUND";
-
   return (
     <>
       {isLoading ? <LoadingOverlay /> : null}
 
-      <SearchLogo/>
+      <SearchLogo />
       <SearchBar
         onSearch={() => onSearch(searchQuery)}
         onQueryChange={onQueryChange}
@@ -62,7 +59,7 @@ function Search(props: ISearchProps) {
           return <Hero key={character.id} character={character}></Hero>;
         })
       ) : hasError ? (
-        <p className="error-message">{errorMessage}</p>
+        <p className="error-message">{searchErrorMessage}</p>
       ) : null}
     </>
   );

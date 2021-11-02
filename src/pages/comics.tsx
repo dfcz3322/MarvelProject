@@ -8,6 +8,7 @@ import { LoadingOverlay } from '../components/loadingOverlay/loadingOverlay';
 import { getComics } from '../actions/comics';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../hooks';
+import { searchErrorMessage } from '../constans';
 
 interface MatchParams {
   id: string;
@@ -21,14 +22,13 @@ function Comics(props: RouteComponentProps<MatchParams>): JSX.Element {
   useEffect(() => {
     dispatch(getComics(props.match?.params.id));
   }, []);
-  const errorMessage = "AN ERROR HAS OCCURRED, PLEASE TRY AGAIN LATER";
   return (
     <div>
       {isLoading ? <LoadingOverlay></LoadingOverlay> : null}
       <div className="comics-container">
         <ComicsLogo></ComicsLogo>
       </div>
-      {hasError ? <p className="error-message">{errorMessage}</p> : null}
+      {hasError ? <p className="error-message">{searchErrorMessage}</p> : null}
       {comics.map((comics: IMarvelEntityResponse) => {
         return <ComicsItem key={comics.id} comics={comics}></ComicsItem>;
       })}

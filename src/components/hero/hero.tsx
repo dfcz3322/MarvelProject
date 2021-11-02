@@ -11,7 +11,7 @@ interface IHeroProps {
 }
 
 export function Hero (props: IHeroProps): JSX.Element {
-  const {character} = props;
+  const {thumbnail, name, description, id} = props.character;
     return (
       <div className="hero--body">
         <Grid
@@ -23,13 +23,13 @@ export function Hero (props: IHeroProps): JSX.Element {
           wrap="nowrap"
         >
           <img
-            src={`${character.thumbnail.path}/standard_xlarge.${character.thumbnail.extension}`}
+            src={`${thumbnail.path}/standard_xlarge.${thumbnail.extension}`}
             className="hero--img"
           ></img>
           <p className="hero--text">
-            {props.character.name} - {character.description}
+            {name} - {description}
           </p>
-          <Link to={`/comics/${props.character.id}`}>
+          <Link to={`/comics/${id}`}>
             <MarvelButton>Read more</MarvelButton>
           </Link>
         </Grid>
