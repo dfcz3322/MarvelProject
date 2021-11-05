@@ -11,26 +11,24 @@ interface ISearchBarProps {
   currentQuery: string;
 }
 
-export class SearchBar extends React.Component<ISearchBarProps> {
-  render(): JSX.Element {
+export function SearchBar (props: ISearchBarProps): JSX.Element {
     return (
       <Grid container direction="row" justifyContent="flex-start" alignItems="center" className="searchBar--body">
         <TextField
-          onChange={this.props.onQueryChange}
+          onChange={props.onQueryChange}
           className="search-input"
           id="filled-textarea"
           label="FIND YOUR SUPERHERO"
           placeholder="Placeholder"
           variant="filled"
-          value={this.props.currentQuery}
+          value={props.currentQuery}
         />
         <Button className="search-sortBy" variant="contained">
           Sort by
         </Button>
         <div className="searchBar-marvelButton">
-          <MarvelButton onClick={this.props.onSearch}>Search</MarvelButton>
+          <MarvelButton onClick={props.onSearch}>Search</MarvelButton>
         </div>
       </Grid>
     );
   }
-}

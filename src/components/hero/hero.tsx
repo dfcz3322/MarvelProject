@@ -10,8 +10,8 @@ interface IHeroProps {
   character: IMarvelEntityResponse;
 }
 
-export class Hero extends React.Component<IHeroProps> {
-  render(): JSX.Element {
+export function Hero (props: IHeroProps): JSX.Element {
+  const {thumbnail, name, description, id} = props.character;
     return (
       <div className="hero--body">
         <Grid
@@ -23,17 +23,16 @@ export class Hero extends React.Component<IHeroProps> {
           wrap="nowrap"
         >
           <img
-            src={`${this.props.character.thumbnail.path}/standard_xlarge.${this.props.character.thumbnail.extension}`}
+            src={`${thumbnail.path}/standard_xlarge.${thumbnail.extension}`}
             className="hero--img"
           ></img>
           <p className="hero--text">
-            {this.props.character.name} - {this.props.character.description}
+            {name} - {description}
           </p>
-          <Link to={`/comics/${this.props.character.id}`}>
+          <Link to={`/comics/${id}`}>
             <MarvelButton>Read more</MarvelButton>
           </Link>
         </Grid>
       </div>
     );
   }
-}

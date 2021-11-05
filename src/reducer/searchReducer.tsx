@@ -26,7 +26,7 @@ export const search = (
     case GET_CHARACTERS_ERROR:
       return { ...state, characters: [], hasError: true };
     case SET_IS_LOADING:
-      return {...state, isLoading: action.payload as boolean };
+      return { ...state, isLoading: action.payload as boolean };
     default:
       return state;
   }
